@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: railsaarthi-postgres
+    environment:
+      POSTGRES_DB: railsaarthi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - "5432:5432"
+
+  backend:
+    image: railsaarthi-backend:latest
+    container_name: railsaarthi-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  ml-service:
+    image: railsaarthi-ml:latest
+    container_name: railsaarthi-ml
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: railsaarthi-frontend:latest
+    container_name: railsaarthi-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

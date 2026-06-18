@@ -1,0 +1,8 @@
+node_modules/
+target/
+.idea/
+__pycache__/
+
+*.pkl
+*.mp4
+crowd_model.pkl
