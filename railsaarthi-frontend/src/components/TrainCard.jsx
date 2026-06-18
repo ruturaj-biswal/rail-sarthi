@@ -32,9 +32,11 @@ function TrainCard({ train }) {
   useEffect(() => {
     loadSeats();
     loadPredictions();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loadSeats = async () => {
+  const loadSeats = React.useCallback(async () => {
     try {
       const data = await getSeats(train.id);
       setSeats(data);
@@ -43,7 +45,7 @@ function TrainCard({ train }) {
     }
   };
 
-  const loadPredictions = async () => {
+  const loadPredictions = React.useCallback(async () => {
     try {
 
       const bookedSeats =
