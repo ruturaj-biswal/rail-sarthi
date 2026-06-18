@@ -33,10 +33,6 @@ function TrainCard({ train }) {
   // LOAD DATA
   // =========================
 
-  useEffect(() => {
-    loadSeats();
-    loadPredictions();
-  }, [loadSeats, loadPredictions]);
 
   const loadSeats = useCallback(async () => {
     try {
@@ -69,6 +65,10 @@ function TrainCard({ train }) {
       console.error(error);
     }
   }, [train.id]);
+    useEffect(() => {
+      loadSeats();
+      loadPredictions();
+    }, [loadSeats, loadPredictions]);
 
   // =========================
   // AI HELPERS
