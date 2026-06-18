@@ -1,4 +1,8 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+  useCallback
+} from "react";
 import { getSeats } from "../services/seatService";
 import { bookTicket } from "../services/bookingService";
 import { getCrowdPrediction } from "../services/crowdService";
@@ -32,20 +36,18 @@ function TrainCard({ train }) {
   useEffect(() => {
     loadSeats();
     loadPredictions();
+  }, [loadSeats, loadPredictions]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const loadSeats = React.useCallback(async () => {
+  const loadSeats = useCallback(async () => {
     try {
       const data = await getSeats(train.id);
       setSeats(data);
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [train.id]);
 
-  const loadPredictions = React.useCallback(async () => {
+  const loadPredictions = useCallback(async () => {
     try {
 
       const bookedSeats =
@@ -66,7 +68,7 @@ function TrainCard({ train }) {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [train.id]);
 
   // =========================
   // AI HELPERS
