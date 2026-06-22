@@ -33,8 +33,15 @@ public class TrainService {
             String destination,
             LocalDate date) {
 
+        System.out.println("INPUT SOURCE = " + source);
+        System.out.println("INPUT DESTINATION = " + destination);
+
         source = stationService.getStationCode(source);
         destination = stationService.getStationCode(destination);
+
+        System.out.println("DB SOURCE CODE = " + source);
+        System.out.println("DB DESTINATION CODE = " + destination);
+        System.out.println("DATE = " + date);
 
         List<Object[]> rows =
                 trainRepository.searchTrainsWithDate(
@@ -43,9 +50,13 @@ public class TrainService {
                         date
                 );
 
+        System.out.println("ROWS FOUND = " + rows.size());
+
         List<TrainResponse> result = new ArrayList<>();
 
         for (Object[] row : rows) {
+
+            System.out.println("TRAIN = " + row[2]);
 
             result.add(
                     new TrainResponse(

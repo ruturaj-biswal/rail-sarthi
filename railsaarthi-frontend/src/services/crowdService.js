@@ -6,7 +6,7 @@ export const getCrowdPrediction = async (
 ) => {
 
   const response = await axios.post(
-    "http://localhost:8080/api/ml/crowd",
+    "http://127.0.0.1:56355/api/ml/crowd",
     {
       trainId: trainId,
       dayOfWeek: new Date().getDay() || 7,

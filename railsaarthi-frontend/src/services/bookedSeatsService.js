@@ -6,7 +6,7 @@ export const getBookedSeats = async (
 
   const response =
     await axios.get(
-      `http://localhost:8080/api/booked-seats/${trainId}`
+      `http://127.0.0.1:56355/api/booked-seats/${trainId}`
     );
 
   return response.data.bookedSeats;
